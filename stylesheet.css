@@ -1,17 +1,17 @@
-*{
-    margin: 0;
-    padding: 0;
+*,
+*::before,
+*::after {
     box-sizing: border-box;
-    font-family: Arial;
 }
-
-/* body {
-  overflow-x: hidden;
-} */
 
 
 body{
     background-color: #e3e6e6;
+    
+    margin: 0;
+    padding: 0;
+
+    font-family: "Poppins", sans-serif;
 }
 
 a{
@@ -231,42 +231,137 @@ select option{
 
 /* body */
 
-.image-link {
-    display: inline-block;
-    height: 550px;
+a {
+    color: inherit;
+    text-decoration: none;
+}
+
+.hero {
+    position: relative;
+    display: block;
     width: 100%;
-    border: none;
-    background-image: linear-gradient(to bottom, transparent 60%, #e3e6e6 100%), url('hero_main.jpg');
+    height: clamp(12rem, 38vw, 30rem);
+    background-image: linear-gradient(to bottom, transparent 60%, #e3e6e6 100%), url("hero-lights.jpg");
+    background-position: center;
     background-size: cover;
 }
 
-.shop{
-    width: 100%;
-    height: 100%;
-    background-image: none;
-    margin-top: -310px;
+.hero::after {
+    position: absolute;
+    right: 0;
+    bottom: -1px;
+    left: 0;
+    height: 2px;
+    background-color: #e3e6e6;
+    content: "";
+}
+
+.main-container {
+    display: grid;
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+    justify-content: center;
+    gap: clamp(0.75rem, 1.5vw, 1rem);
+    padding: clamp(0.75rem, 1.5vw, 1rem);
+}
+
+.card-container {
     display: flex;
-    border: none;
-    padding-left: none;
-    padding-right: none;
-    flex-wrap: wrap;
+    min-width: 0;
+    flex-direction: column;
+    justify-content: space-between;
+    gap: 0.75rem;
+    padding: clamp(0.75rem, 1.5vw, 1rem);
+    border-radius: 0.5rem;
+    background-color: white;
+    color: black;
 }
 
-.box-footer a{
-    margin-top: auto;
-    padding-top: 1rem;
-    color: #2162a1;
+.card-header {
+    padding-top: 0.25rem;
+    font-size: clamp(1rem, 1.5vw, 1.25rem);
+    font-weight: 600;
+    line-height: 1.35;
 }
 
-.box-footer a:hover{
-    color: #0c3353;
+.single img,
+.multiple img{
+    display: block;
+    width: 100%;
+    height: auto;
+    border-radius: 0.25rem;
+    object-fit: cover;
 }
 
-.mixed{
-    display: inline-block;
-    height: 49.1%;
-    width: 49.1%;
-    background-color: pink;
+.single img {
+    aspect-ratio: 1 / 1;
+}
+
+.multiple {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: clamp(0.5rem, 1vw, 0.9rem);
+}
+
+.multiple img {
+    aspect-ratio: 1.4 / 1;
+}
+
+.card-footer {
+    padding-bottom: 0.25rem;
+    color: black;
+    font-size: 0.9rem;
+}
+
+/* For tablets */
+@media (min-width: 40.01em) and (max-width: 64em) {
+    .main-container {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+
+    .single img{
+        aspect-ratio: 1 / 1.48;
+    }
+
+    .hide-on-tab {
+        display: none;
+    }
+
+    .multiple {
+        grid-template-columns: minmax(0, 1fr);
+    }
+
+    .multiple a:nth-child(n + 3) {
+        display: none;
+    }
+}
+/* For mobile phones */
+@media screen and (max-width: 40em) {
+    .hero {
+        height: 12rem;
+    }
+
+    .main-container {
+        grid-template-columns: minmax(0, 1fr);
+        gap: 0.75rem;
+        padding: 0.75rem;
+    }
+
+    .card-container {
+        gap: 0.75rem;
+        padding: 0.875rem;
+    }
+
+    .card-header {
+        font-size: 1.1rem;  
+    }
+    
+    .multiple {
+        grid-template-columns: minmax(0, 1fr);
+    }
+
+    .multiple a:nth-child(n+2){
+        display: none;
+    }
 }
 
 .base-main{
